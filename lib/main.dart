@@ -1,22 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:taller1_flutter/screens/catalogo_peliculas.dart';
 import 'package:taller1_flutter/screens/inicio.dart';
 import 'package:taller1_flutter/screens/login.dart';
+import 'package:taller1_flutter/screens/regitroScreen.dart';
 import 'package:taller1_flutter/screens/reproduccion.dart';
 
-void main() {
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Movie App',
+    return MaterialApp(
+      title: 'nesflis',
       home: HomeScreen(),
+      routes: {
+        '/login': (context) => LoginScreen(),
+        '/register': (context) => RegistroScreen  (),
+        '/home': (context) => HomeScreen(),
+      },
     );
   }
 }
@@ -25,8 +34,6 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  
- 
   _HomeScreenState createState() => _HomeScreenState();
 }
 
@@ -52,9 +59,9 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         onTap: _onTabTapped,
         currentIndex: _currentIndex,
-        backgroundColor: Color.fromARGB(255, 4, 7, 10), // Cambia el color de fondo de la barra de navegación
-        selectedItemColor: Color.fromARGB(255, 212, 14, 14), // Cambia el color de los íconos y textos seleccionados
-        unselectedItemColor: const Color.fromARGB(255, 12, 2, 2), // Cambia el color de los íconos y textos no seleccionados
+        backgroundColor: Color.fromARGB(255, 4, 7, 10),
+        selectedItemColor: Color.fromARGB(255, 212, 14, 14),
+        unselectedItemColor: const Color.fromARGB(255, 12, 2, 2),
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -77,4 +84,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-  
